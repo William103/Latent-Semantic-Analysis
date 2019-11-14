@@ -3,7 +3,7 @@ import re
 
 words = []
 
-# I want to get rid of all characters that aren't letters of spaces, so I use
+# I want to get rid of all characters that aren't letters or spaces, so I use
 # this regex to do it
 regex = re.compile("[^a-z ]+")
 
@@ -45,8 +45,24 @@ def readmatrices(filepath):
 
 # right now just does the svd, but lsa also involves chopping off some
 # dimensions to make calculations faster and I might implement that later
-def lsa(freqmat, wordlist):
+def lsa(freqmat, wordlist, k):
     U, sigma, Vt = svd(freqmat, wordlist)
+    if k < U.n:
+        for i in range(U.m):
+            for j in range(U.n - k):
+                U.data[i].pop()
+        U.n = k
+    if k < max(sigma.m, sigma.n):
+        for i in range(max(sigma.m - k, 0)):
+            sigma.data.pop()
+        for row in sigma.data:
+            for i in range(max(len(row) - k, 0)):
+                row.pop()
+        sigma.m = sigma.n = k
+    if k < Vt.m:
+        for i in range(Vt.m - k):
+            Vt.data.pop()
+        Vt.m = k
     return [U, sigma, Vt]
 
 # helper function to calculate dot products of two vectors
@@ -122,7 +138,7 @@ for word in freqtemp:
 
 # either calculate the matrices or read them from the file, uncomment if you
 # want to calculate the matrices
-#T, S, Dt = lsa(freq, wordlist)
+#T, S, Dt = lsa(freq, wordlist, 2)
 T, S, Dt = readmatrices('matrix.txt')
 
 # write the matrices to a file for future reference and more legibility than
@@ -141,16 +157,32 @@ with open("matrix.txt", "w") as f:
         word = wordlist[i]
         f.write(word)
         f.write(' ')
-        f.write(freqtemp[word])
+        for freq in freqtemp[word]:
+            f.write(str(freq))
+            f.write(' ')
+        f.write('\n')
 
-# ask for words from the user and compare them to each other
-while True:
-    word1 = input()
-    word2 = input()
-    if word1 in wordlist and word2 in wordlist:
-        index1 = wordlist.index(word1)
-        index2 = wordlist.index(word2)
-        wordvec1 = T.data[index1]
-        wordvec2 = T.data[index2]
-        similarity = dot(wordvec1, wordvec2)
-        print(similarity)
+# read the document 'input.txt', figure out the query vector, translate the
+# query vector to the document space, and figure out how close each document is,
+# allowing us to evaluate whether the document is more math-y or linguistics-y
+
+with open("input.txt", "r") as f:
+    querytemp = {}
+    for line in f:
+        for char in line.split():
+            if char in freqtemp:
+                if char not in querytemp:
+                    querytemp[char] = 0
+                querytemp[char] += 1
+    querymat = Matrix(1, len(freqtemp))
+    for i, word in enumerate(freqtemp.keys()):
+        if word in querytemp:
+            querymat[[0, i]] = math.log(1 + querytemp[word])
+        else:
+            querymat[[0, i]] = 0.0
+
+Sinv = S
+for i in min(range())
+
+querymat = querymat * T * S.inverse()
+print(querymat)

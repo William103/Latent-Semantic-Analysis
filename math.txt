@@ -1,0 +1,32 @@
+The fundamental theorem of calculus states that the definite integral from a to
+b of f(x) is equal to F(b) - F(a) where F is a function whose derivative is f.
+
+The fundamental theorem of linear algebra, or rank-nullity theorem, states that
+the sum of dimensions of the null space and range of a linear map equal the
+dimensions of the domain of said map.
+
+The fundamental theorem of algebra states that every polynomial with integer
+coefficients of degree n can be factored into n linear terms over C.
+
+The fundamental theorem of arithmatic states that every number can be written as
+a unique product of prime factors.
+
+The divergence theorem states that the integral over a closed surface of a
+vector function is equal to the triple integral over the enclosed volume of the
+divergence of the vector function.
+
+Stoke's Theorem states that the integral over a closed curve of a vector
+function is equal to the surface integral over an enclosed surface of the curl
+of the vector function.
+
+Green's Theorem states that the integral over a closed curve of a vector
+function in two dimensions of a vector function (P(x,y), Q(x,y)) is equal to the
+double integral of the area enclosed by the curve of Qx - Py.
+
+The curl of a conservative vector function is 0.
+
+The Riemann Hypothesis predicts that the real part of all non-trivial zeros of
+the Riemann zeta function is 1/2.
+
+The Twin Primes conjecture predicts that the gap between primes never goes below
+2.

@@ -63,7 +63,7 @@ class Matrix:
                 for j in range(retval.n):
                     val = 0
                     for r in range(self.n):
-                        val += self[[i,r]] * other[[r,j]]
+                        val += float(self[[i,r]]) * float(other[[r,j]])
                     retval[[i,j]] = val
             return retval
         else:

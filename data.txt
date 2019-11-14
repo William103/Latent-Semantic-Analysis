@@ -1,0 +1,108 @@
+The fundamental theorem of calculus states that the definite integral from a to
+b of f(x) is equal to F(b) - F(a) where F is a function whose derivative is f.
+
+The fundamental theorem of linear algebra, or rank-nullity theorem, states that
+the sum of dimensions of the null space and range of a linear map equal the
+dimensions of the domain of said map.
+
+The fundamental theorem of algebra states that every polynomial with integer
+coefficients of degree n can be factored into n linear terms over C.
+
+The fundamental theorem of arithmatic states that every number can be written as
+a unique product of prime factors.
+
+The divergence theorem states that the integral over a closed surface of a
+vector function is equal to the triple integral over the enclosed volume of the
+divergence of the vector function.
+
+Stoke's Theorem states that the integral over a closed curve of a vector
+function is equal to the surface integral over an enclosed surface of the curl
+of the vector function.
+
+Green's Theorem states that the integral over a closed curve of a vector
+function in two dimensions of a vector function (P(x,y), Q(x,y)) is equal to the
+double integral of the area enclosed by the curve of Qx - Py.
+
+The curl of a conservative vector function is 0.
+
+The Riemann Hypothesis predicts that the real part of all non-trivial zeros of
+the Riemann zeta function is 1/2.
+
+The Twin Primes conjecture predicts that the gap between primes never goes below
+2.
+
+A morpheme is the smallest unit of speech that has morpheme. Some morphemes are
+bound, meaning that they have to be attached to some other morpheme. Other
+morphemes are free, meaning that they can stand by themselves. For example, the
+word "bike" is a free morpheme. It conveys meaning, and doesn't need any other
+word supporting it. On the other hand "-s" is a bound morpheme. It conveys
+meaning, ie that there's more than one of something, but it cannot stand on its
+own.
+
+A phoneme is the smalles unit of speech when talking about sound. A sound is a
+phoneme in a language if there are two different words that differ only by that
+sound. For example, there are phonemes /b/ and /p/ because the words "pat" and
+"bat", pronounced /paet/ and /baet/ differ only by the /p/ and /b/ sounds.
+
+An allophone is an alternate pronunciation of a phoneme. This happens whenever
+two sounds occur in complementary distribution. This means that you can predict
+whether the sound will be one or the other based entirely on its position. For
+example, word initially, the /t/ phoneme gets pronounced /t^h/. So "top" gets
+pronounced /t^hap/ while "stop" gets pronounced /stap/. These are different
+sounds, but you can predict whether it will be /t/ or /t^h/, so, in English,
+they are really just two variations of the same sound.
+
+Semantics is the study of meaning. This is a fairly daunting idea, but it is
+done fairly simply. In semantics, some important tools include logic and set
+theory. Basically, in a sentence like "Joan is a clock", thre truth value
+depends on "Is Joan a member of the set of all clocks". Then, examining which of
+the set of possible worlds we live in, we can determine whether or not this
+sentence is true.
+
+There are some similar languages, right? For example, why does Spanish "padre"
+look kinda like English "father", or "por" and "for"? Moreover, if you know
+Ancient Greek and Latin, things get even more similar, with "pater" and "pater",
+"mater" and "mater", etc. It turns out, that all Indo-European languages, so
+languages decended from Latin, Greek, Slavic languages, Germanic languages,
+Celtic languages, Albanian, Baltic languages, and a bunch of dead language
+families, are all decended from a common ancestor, Proto-Indo-European.
+
+Proto-Indo-European, or PIE, is a very strange language. It has a lot of
+familiar words, but very bizarre grammar and incredibly weird phonology. It
+probably had three vowels e, o, and a, several consonants including a set of
+unvoiced, voiced, and breathy voiced bilabial, alveolar, velar, and post-velar
+stops, several sonorants including m, n, l, and r, some fricatives including s
+and some very mysterious sounds called laryngeals. These laryngeals are called
+h1, h2, and h3 and were probably pronounced something like a glottal stop or
+fricative, a voiceless uvular fricative, and a voiced pharyngeal fricative with
+lip rounding respectively. All we really know is that h1 "e-colored" vowels, h2
+"a-colored" vowels, and h3 "o-colored" vowels. Based off of modern Arabic, which
+has similar consonants and vowels and has vowel coloring, we can guess the
+pronounciation of the laryngeals.
+
+PIE also had very weird grammar. Instead of making a bunch of tense distinctions
+like modern languages, PIE was more concerned with aspects. There were three
+kinds of verbs, present, aorist, and perfect (which correspond with the modern
+terms imperfective, perfective, and stative aspects). Verbs could be any of the
+three types, and there was some derivational morphology in place to allow you to
+switch between types, but it was not very regular or strict. For example, the
+root "gwem" was a root aorist, meaning that if you inflected the root, you got
+verbs with an aorist aspect. So "gwemmi" was kind of like "I stepped", "gwemsi"
+was kind of like "you stepped", etc. But you could add the "-ske" suffix to
+change it to the present stem "gwmske" and get the verbs "gwmskomi" for "I am
+stepping", "gwmskesi" for "you are stepping", etc. Or, you could reduplicate the
+root to get the perfect verb stem "gwegwom" to get the verbs "gwegwome" for
+something like "I have stepped" in later PIE and something extremely hard to
+interpret in PIE proper.
+
+You probably noticed that "gwem" followed clear patterns, you add "-mi" for
+first person, "-si" for second person, etc. but adding "-ske" totally broke
+everything. This is because of a complicated system called ablaut. Verbs had
+accent in PIE. The root "gwem" was really more like "gw`em" and the suffix
+"-sk`e" had accent. When vowels are accented, they are in full grade, meaning
+that are pronounced like you'd expect, but when they aren't accented, things get
+weird and some vowels are dropped. So "gw`em-" + "-sk`e" becomes "gwmsk`e-",
+which is perfectly fine because sonorants can be nuclei of syllables (and can
+carry accent in one known word "w`lkwos", or "wolf"). On top of this, the e in
+"-sk`e" could switch to an o before nasals, which is why you have "gwmskomi"
+rather than "gwemskemi" like you'd expect.
