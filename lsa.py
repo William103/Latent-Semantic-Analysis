@@ -78,8 +78,10 @@ length"
     mag1 = math.sqrt(mag1)
     mag2 = math.sqrt(mag2)
     for i in range(len(vec1)):
-        vec1[i] /= mag1
-        vec2[i] /= mag2
+        if mag1 != 0:
+            vec1[i] /= mag1
+        if mag2 != 0:
+            vec2[i] /= mag2
     for i in range(len(vec1)):
         prod += vec1[i] * vec2[i]
     return prod
@@ -115,13 +117,13 @@ for i in range(len(words)):
         freqtemp[word][i] += 1
 
 # just prints the frequencies in a very pretty way
-print("Frequencies: ")
-for word in wordlist:
-    print(word, end = ': ')
-    print(' ' * (12 - len(word)), end = '')
-    for doc in freqtemp[word]:
-        print(doc, end = ' ')
-    print()
+#print("Frequencies: ")
+#for word in wordlist:
+    #print(word, end = ': ')
+    #print(' ' * (12 - len(word)), end = '')
+    #for doc in freqtemp[word]:
+        #print(doc, end = ' ')
+    #print()
 
 # build the actual frequency matrix with proper weighting and everything
 index = 0
@@ -166,6 +168,11 @@ with open("matrix.txt", "w") as f:
 # query vector to the document space, and figure out how close each document is,
 # allowing us to evaluate whether the document is more math-y or linguistics-y
 
+strinput = input()
+
+with open("input.txt", "w") as f:
+    f.write(strinput)
+
 with open("input.txt", "r") as f:
     querytemp = {}
     for line in f:
@@ -181,8 +188,23 @@ with open("input.txt", "r") as f:
         else:
             querymat[[0, i]] = 0.0
 
-Sinv = S
-for i in min(range())
+Sinv = S.copy()
+for i in range(min(Sinv.m, Sinv.n)):
+    if (Sinv[[i,i]] != 0):
+        Sinv[[i,i]] = 1.0 / float(Sinv[[i,i]])
 
-querymat = querymat * T * S.inverse()
-print(querymat)
+querymat = querymat * T * Sinv
+
+scores = []
+for document in Dt.transpose().data:
+    scores.append(dot(document, querymat.data[0]) / math.sqrt(dot(document, document)) /
+        math.sqrt(dot(querymat.data[0], querymat.data[0])))
+maxdex = 0
+for i in range(len(scores)):
+    if scores[i] > scores[maxdex]:
+        maxdex = i
+
+if maxdex < 10:
+    print("Math")
+else:
+    print("Linguistics")

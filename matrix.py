@@ -97,6 +97,14 @@ class Matrix:
         assert self.m == self.n,"Can only find eig of square matrix"
         return np.linalg.eig(self.data)
 
+    # returns a copy of the original matrix
+    def copy(self):
+        ret = Matrix(self.m, self.n)
+        ret.data = []
+        for thing in self.data:
+            ret.data.append(thing.copy())
+        return ret
+
 # a diagonal matrix is a special case of a matrix, whose inverse is easy to
 # calculate, so might as well make a subclass for it
 class Diagonal_Matrix(Matrix):
