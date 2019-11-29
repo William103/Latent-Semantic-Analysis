@@ -86,6 +86,14 @@ length"
         prod += vec1[i] * vec2[i]
     return prod
 
+def dot2(vec1, vec2):
+    assert len(vec1) == len(vec2),"Can only take dot product of vectors of same\
+length"
+    prod = 0
+    for i in range(len(vec1)):
+        prod += vec1[i] * vec2[i]
+    return prod
+
 # basically read the data file, split it up along paragraphs, and clean it; by
 # the way almost all of this code is stolen from stackoverflow because I never
 # managed to clean it properly myself
@@ -140,8 +148,8 @@ for word in freqtemp:
 
 # either calculate the matrices or read them from the file, uncomment if you
 # want to calculate the matrices
-#T, S, Dt = lsa(freq, wordlist, 2)
-T, S, Dt = readmatrices('matrix.txt')
+T, S, Dt = lsa(freq, wordlist, 2000)
+#T, S, Dt = readmatrices('matrix.txt')
 
 # write the matrices to a file for future reference and more legibility than
 # printing it to the console
@@ -197,8 +205,12 @@ querymat = querymat * T * Sinv
 
 scores = []
 for document in Dt.transpose().data:
-    scores.append(dot(document, querymat.data[0]) / math.sqrt(dot(document, document)) /
-        math.sqrt(dot(querymat.data[0], querymat.data[0])))
+    denom = math.sqrt(dot2(document, document)) * math.sqrt(dot2(querymat.data[0], querymat.data[0]))
+    if denom != 0:
+        scores.append(dot2(document, querymat.data[0]) / math.sqrt(dot2(document, document)) / math.sqrt(dot2(querymat.data[0], querymat.data[0])))
+    else:
+        scores.append(0)
+#print(scores)
 maxdex = 0
 for i in range(len(scores)):
     if scores[i] > scores[maxdex]:

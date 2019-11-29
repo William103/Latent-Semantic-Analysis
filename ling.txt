@@ -73,3 +73,5 @@ which is perfectly fine because sonorants can be nuclei of syllables (and can
 carry accent in one known word "w`lkwos", or "wolf"). On top of this, the e in
 "-sk`e" could switch to an o before nasals, which is why you have "gwmskomi"
 rather than "gwemskemi" like you'd expect.
+
+Linguistics is the study of language.
