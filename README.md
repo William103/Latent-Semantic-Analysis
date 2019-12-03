@@ -3,7 +3,6 @@ Simple, inefficient implementation of LSA.
 
 ## Sample results
 
-| --- | --- | --- |
 | Input | Output | Comments |
 | --- | --- | --- |
 | Semantics is a kind of boring subfield. | Linguistics | Works great |
