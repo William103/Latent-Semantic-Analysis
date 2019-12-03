@@ -216,7 +216,7 @@ for i in range(len(scores)):
     if scores[i] > scores[maxdex]:
         maxdex = i
 
-if maxdex < 10:
+if maxdex < 10: # CHANGE THIS LINE
     print("Math")
 else:
     print("Linguistics")
