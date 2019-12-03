@@ -3,13 +3,21 @@ import re
 
 words = []
 
+# CHANGE THIS IF YOU CHANGE THE NUMBER OF MATH DOCUMENTS
+number_of_math_documents = 10
+
+# CHANGE TO True OR False DEPENDING ON THE CIRCUMSTANCE
+recalculate = False
+
+# CHANGE BASED ON RANK APPROXIMATION
+k = 10
+
 # I want to get rid of all characters that aren't letters or spaces, so I use
 # this regex to do it
 regex = re.compile("[^a-z ]+")
 
-# unfinished, I think, function to read matrices from a saved file, so I
-# wouldn't need to sit through the 30 minutes or so each time I wanted to
-# calculate it
+# Reads the matrices from the file so it doesn't need to recalculate the
+# matrices every single time
 def readmatrices(filepath):
     with open(filepath) as f:
         first_line = f.readline().split()
@@ -43,8 +51,7 @@ def readmatrices(filepath):
         data = []
         return [U, S, Vt]
 
-# right now just does the svd, but lsa also involves chopping off some
-# dimensions to make calculations faster and I might implement that later
+# does the svd and rank approximation based on the value of k
 def lsa(freqmat, wordlist, k):
     U, sigma, Vt = svd(freqmat, wordlist)
     if k < U.n:
@@ -65,7 +72,9 @@ def lsa(freqmat, wordlist, k):
         Vt.m = k
     return [U, sigma, Vt]
 
-# helper function to calculate dot products of two vectors
+# helper function to calculate dot products of two vectors but also normalizes
+# them for some reason; I'm too scared to delete this, so I just left it here, but
+# this is mostly useless
 def dot(vec1, vec2):
     assert len(vec1) == len(vec2),"Can only take dot product of vectors of same\
 length"
@@ -96,7 +105,9 @@ length"
 
 # basically read the data file, split it up along paragraphs, and clean it; by
 # the way almost all of this code is stolen from stackoverflow because I never
-# managed to clean it properly myself
+# managed to clean it properly myself, although it turns out I was just
+# forgetting that string methods are just accessor, not mutator methods, so I
+# was right, just haven't coded in python in a while
 with open("data.txt") as f:
     remove = ".,<>/?;:'\"\\[{]}|=+-_)(*&^%$#@!~`1234567890"
     allowed = "abcdefghijklmnopqrstuvwxyz"
@@ -111,7 +122,7 @@ with open("data.txt") as f:
 
 # set up a dictionary of words to figure out how many unique words there are and
 # what their frequencies in each document are; btw "words" is a list of
-# paragraphs not words, I'm sorry
+# paragraphs not words, and it's way too late to change variable names; I'm sorry
 freqtemp = {}
 unique_words = 0
 wordlist = []
@@ -146,10 +157,12 @@ for word in freqtemp:
         freq[[index,i]] *= math.log(len(words) / (1 + docfreq)) / math.log(2)
     index += 1
 
-# either calculate the matrices or read them from the file, uncomment if you
-# want to calculate the matrices
-T, S, Dt = lsa(freq, wordlist, 2000)
-#T, S, Dt = readmatrices('matrix.txt')
+# either calculate the matrices or read them from the file
+if recalculate:
+    T, S, Dt = lsa(freq, wordlist, k)
+else:
+    T, S, Dt = readmatrices('matrix.txt')
+
 
 # write the matrices to a file for future reference and more legibility than
 # printing it to the console
@@ -172,10 +185,11 @@ with open("matrix.txt", "w") as f:
             f.write(' ')
         f.write('\n')
 
-# read the document 'input.txt', figure out the query vector, translate the
+# read the user input, figure out the query vector, translate the
 # query vector to the document space, and figure out how close each document is,
-# allowing us to evaluate whether the document is more math-y or linguistics-y
-
+# allowing us to evaluate whether the document is more math-y or linguistics-y;
+# this code originally worked off an input file, so I apologize for the very
+# weird, messy, roundabout way of doing this
 strinput = input()
 
 with open("input.txt", "w") as f:
@@ -210,13 +224,12 @@ for document in Dt.transpose().data:
         scores.append(dot2(document, querymat.data[0]) / math.sqrt(dot2(document, document)) / math.sqrt(dot2(querymat.data[0], querymat.data[0])))
     else:
         scores.append(0)
-#print(scores)
 maxdex = 0
 for i in range(len(scores)):
     if scores[i] > scores[maxdex]:
         maxdex = i
 
-if maxdex < 10: # CHANGE THIS LINE
+if maxdex < number_of_math_documents:
     print("Math")
 else:
     print("Linguistics")

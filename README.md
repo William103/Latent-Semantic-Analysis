@@ -1,6 +1,19 @@
 # Latent-Semantic-Analysis
 Simple, inefficient implementation of LSA.
 
+## Sample results
+
+| --- | --- | --- |
+| Input | Output | Comments |
+| --- | --- | --- |
+| Semantics is a kind of boring subfield. | Linguistics | Works great |
+| linear algebra is very interesting | Math | It actually does some preliminary data processing so this doesn't mess it up |
+| Historical linguistics is my favorite subfield. | Linguistics | Works great |
+| That or computational linguistics. | Math | Sometimes it does screw up. My guess is most of these words aren't in the data set |
+| vector calculus is fun too | Math | Works great |
+| The fundamental theorem is important | Math | It sees "theorem" and "fundamental" in math contexts a lot |
+| The theorem is important | Linguistics | But it sees "important" a lot in linguistics by a quirk of the data set, so gets it wrong here |
+
 ## How to download and use
 If you want to attempt to run it, you will need python3 installed. I'm assuming
 you know how to do that. You may also need to install numpy, a matrix library I
@@ -19,12 +32,20 @@ data I gave it, it works perfectly.
 Like I said, there is not much data here. I really struggled to find good, clean
 data, especially math data, in the form of text files, so I just typed up
 whatever came to mind myself. If you find data, feel free to change data.txt.
-You will likely need to make some changes to the code, though. The first time
-you run it after changing the data, you need to uncomment the line 152 and
-comment line 151. This will recalculate the matrices the next time you run it.
-After it has recalculated them, you can change it back to how it was to make
-things run faster. Also, make sure the math documents are first in data.txt and
-change the number in line 219 to the number of math documents.
+If you change the data, you will need to change some of the code. At the very
+top are three variables you can set how you need them.
+`number_of_math_documents` is fairly self explanatory; if you change the number
+of math documents (they MUST be first in data.txt), change this variable.
+`recalculate` can be set to either "True" or "False" exactly like this without
+the quotes; "True" if you want to recalculate the matrices and "False"
+otherwise, just make sure to run it once with "True" if change things. It will
+be much slower with "False" and will probably give some warnings you can ignore.
+Finally, `k` is the rank approximation. If you are getting really bad results,
+make this number higher. It basically sets how many singular values should be
+kept and how many should be discarded. 10 is about the smallest number I've
+gotten consistently good results with with an 18-dimensional document space (and
+400-something dimensional term space; ideally you'd have a lot more documents
+with not too many more words), but with better data, who knows.
 
 ## How it works
 It's surprisingly straightforward. I wrote a quick matrix library in matrix.py
